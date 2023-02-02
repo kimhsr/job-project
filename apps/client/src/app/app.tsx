@@ -17,11 +17,8 @@ const Main = styled.div`
 
 export const App = () => {
   const serverUrl = '/api';
-  const [helloWorld, setHelloWorld] = useState('Hi World');
+  const [helloWorld, setHelloWorld] = useState('Hi WORLD');
 
-  useEffect(() => {
-    axios.get(serverUrl).then((value) => setHelloWorld(value.data.message));
-  }, []);
   return (
     <Container>
       <Main>{helloWorld}</Main>
