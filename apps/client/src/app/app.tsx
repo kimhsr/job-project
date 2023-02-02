@@ -19,9 +19,6 @@ export const App = () => {
   const serverUrl = '/api';
   const [helloWorld, setHelloWorld] = useState('Hi World');
 
-  useEffect(() => {
-    axios.get(serverUrl).then((value) => setHelloWorld(value.data.message));
-  }, []);
   return (
     <Container>
       <Main>{helloWorld}</Main>
