@@ -1,54 +1,36 @@
 import styled from 'styled-components';
-import NxWelcome from './nx-welcome';
+import axios from 'axios';
 
 import { Route, Routes, Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
-const StyledApp = styled.div`
-  // Your style here
+const Container = styled.div`
+  background-color: rgba(128, 128, 0, 0.5);
+  width: 100vw;
+  height: 100vh;
+`;
+const Main = styled.div`
+  margin: auto;
+  text-align: center;
+  font-size: large;
 `;
 
-export function App() {
-  return (
-    <StyledApp>
-      <NxWelcome title='client' />
+export const App = () => {
+  const serverUrl = '/api';
+  const [helloWorld, setHelloWorld] = useState('Hi World');
 
-      {/* START: routes */}
-      {/* These routes and navigation have been generated for you */}
-      {/* Feel free to move and update them to fit your needs */}
-      <br />
-      <hr />
-      <br />
-      <div role='navigation'>
-        <ul>
-          <li>
-            <Link to='/'>Home</Link>
-          </li>
-          <li>
-            <Link to='/page-2'>Page 2</Link>
-          </li>
-        </ul>
-      </div>
+  useEffect(() => {
+    axios.get(serverUrl).then((value) => setHelloWorld(value.data.message));
+  }, []);
+  return (
+    <Container>
+      <Main>{helloWorld}</Main>
       <Routes>
-        <Route
-          path='/'
-          element={
-            <div>
-              This is the generated root route. <Link to='/page-2'>Click here for page 2.</Link>
-            </div>
-          }
-        />
-        <Route
-          path='/page-2'
-          element={
-            <div>
-              <Link to='/'>Click here to go back to root page.</Link>
-            </div>
-          }
-        />
+        <Route path='/' />
+        <Route path='/page-2' />
       </Routes>
-      {/* END: routes */}
-    </StyledApp>
+    </Container>
   );
-}
+};
 
 export default App;
