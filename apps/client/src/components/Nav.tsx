@@ -9,13 +9,14 @@ const NavbarMain = styled.div`
 `;
 
 const Navbar = styled.div`
+  display: flex;
   height: 70px;
   margin: 0 auto;
   max-width: 71.25rem;
+  justify-content: space-between;
 `;
 
 const Logo = styled.div`
-  display: inline-block;
   line-height: 4.4rem;
   font-weight: 700;
   font-size: 2rem;
@@ -23,37 +24,35 @@ const Logo = styled.div`
   cursor: pointer;
 `;
 
-const Menu = styled.div`
+const MenuLists = styled.ul`
   color: #fff;
   font-size: 1rem;
-  display: inline-block;
-  position: relative;
-  left: 40px;
-  padding: 1rem;
+  display: flex;
   cursor: pointer;
+  gap: 30px;
+  align-items: center;
+  padding: 0;
 `;
 
-const Login = styled.div`
-  color: #fff;
-  font-size: 1rem;
-  display: inline-block;
-  position: relative;
-  left: 670px;
-  padding: 0.7rem;
-  cursor: pointer;
-`;
+const MenuTtem = styled.div``;
 
 function Nav() {
   return (
-    <NavbarMain>
-      <Navbar>
-        <Logo>JOBDA</Logo>
-        <Menu>채용공고</Menu>
-        <Menu>커뮤니티</Menu>
-        <Login>로그인</Login>
-        <Login>회원가입</Login>
-      </Navbar>
-    </NavbarMain>
+    <>
+      <NavbarMain>
+        <Navbar>
+          <MenuLists>
+            <Logo>JOBDA</Logo>
+            <MenuTtem>채용공고</MenuTtem>
+            <MenuTtem>커뮤니티</MenuTtem>
+          </MenuLists>
+          <MenuLists>
+            <MenuTtem>로그인</MenuTtem>
+            <MenuTtem>회원가입</MenuTtem>
+          </MenuLists>
+        </Navbar>
+      </NavbarMain>
+    </>
   );
 }
 
