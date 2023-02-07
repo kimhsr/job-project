@@ -5,7 +5,8 @@ const NavbarMain = styled.div`
   position: fixed;
   z-index: 10;
   width: 100%;
-  background-color: #383838;
+  background-color: #fff;
+  border-bottom: 1px solid #e5e5e5;
 `;
 
 const Navbar = styled.div`
@@ -20,13 +21,14 @@ const Logo = styled.div`
   line-height: 4.4rem;
   font-weight: 700;
   font-size: 2rem;
-  color: #fff;
+  color: #383838;
   cursor: pointer;
 `;
 
 const MenuLists = styled.ul`
-  color: #fff;
+  color: #383838;
   font-size: 1rem;
+  font-weight: 600;
   display: flex;
   cursor: pointer;
   gap: 30px;
