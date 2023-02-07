@@ -3,9 +3,10 @@ import axios from 'axios';
 
 import { Route, Routes, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import Nav from '../components/Nav';
 
 const Container = styled.div`
-  background-color: rgba(128, 128, 0, 0.5);
+  background-color: #fff;
   width: 100vw;
   height: 100vh;
 `;
@@ -17,14 +18,10 @@ const Main = styled.div`
 
 export const App = () => {
   const serverUrl = '/api';
-  const [helloWorld, setHelloWorld] = useState('Hi World');
 
-  useEffect(() => {
-    axios.get(serverUrl).then((value) => setHelloWorld(value.data.message));
-  }, []);
   return (
     <Container>
-      <Main>{helloWorld}</Main>
+      <Nav />
       <Routes>
         <Route path='/' />
         <Route path='/page-2' />
