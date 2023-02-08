@@ -5,6 +5,7 @@ const NavbarMain = styled.div`
   position: fixed;
   z-index: 10;
   width: 100%;
+  top: 0;
   background-color: #fff;
   border-bottom: 1px solid #e5e5e5;
 `;
