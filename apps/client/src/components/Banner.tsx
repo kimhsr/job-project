@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
+import './Banner.css';
 
 import { Navigation, Pagination, Autoplay } from 'swiper';
 
