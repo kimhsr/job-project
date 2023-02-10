@@ -11,12 +11,7 @@ import Footer from '../components/Footer';
 
 const Container = styled.div`
   background-color: #fff;
-  width: 100vw;
-`;
-const Main = styled.div`
-  margin: auto;
-  text-align: center;
-  font-size: large;
+  padding-top: 70px;
 `;
 
 export const App = () => {
