@@ -1,5 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { StyledLink } from './StyledLink';
 
 const NavbarMain = styled.div`
   position: fixed;
@@ -45,13 +47,19 @@ function Nav() {
       <NavbarMain>
         <Navbar>
           <MenuLists>
-            <Logo>JOBDA</Logo>
+            <StyledLink to='/'>
+              <Logo>JOBDA</Logo>
+            </StyledLink>
             <MenuTtem>채용공고</MenuTtem>
             <MenuTtem>커뮤니티</MenuTtem>
           </MenuLists>
           <MenuLists>
-            <MenuTtem>로그인</MenuTtem>
-            <MenuTtem>회원가입</MenuTtem>
+            <StyledLink to='/login'>
+              <MenuTtem>로그인</MenuTtem>
+            </StyledLink>
+            <StyledLink to='/join'>
+              <MenuTtem>회원가입</MenuTtem>
+            </StyledLink>
           </MenuLists>
         </Navbar>
       </NavbarMain>
