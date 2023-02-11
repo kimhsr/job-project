@@ -6,7 +6,7 @@ const LoginContainer = styled.div`
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  margin-top: 40px;
+  margin-top: 25px;
   border: 1px solid #e5e5e5;
   border-radius: 10px;
   width: 100%;
@@ -102,9 +102,9 @@ function Login() {
         <ErrorMessageWrap>올바른 이메일을 입력해주세요.</ErrorMessageWrap>
         <InputTitle style={{ marginTop: '26px' }}>비밀번호</InputTitle>
         <InputWrap>
-          <Input placeholder='영문, 숫자, 특수문자 포함 8자 이상'></Input>
+          <Input placeholder='영문, 숫자 포함 8자 이상'></Input>
         </InputWrap>
-        <ErrorMessageWrap>영문, 숫자, 특수문자 포함 8자 이상 입력해주세요.</ErrorMessageWrap>
+        <ErrorMessageWrap>영문, 숫자 포함 8자 이상 입력해주세요.</ErrorMessageWrap>
       </ContentWrap>
       <ButtonWrap>
         <Button disabled={true}>확인</Button>
