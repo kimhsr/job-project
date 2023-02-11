@@ -120,7 +120,7 @@ function Join() {
         <Button disabled={true}>확인</Button>
       </ButtonWrap>
       <BottomText>
-        이미 회원이신가요? <Link to='/Login'>로그인 하러가기</Link>
+        이미 회원이신가요? <Link to='/login'>로그인 하러가기</Link>
       </BottomText>
     </JoinContainer>
   );
