@@ -10,7 +10,6 @@ const LoginContainer = styled.div`
   border: 1px solid #e5e5e5;
   border-radius: 10px;
   width: 100%;
-  height: 470px;
   max-width: 500px;
   overflow: hidden;
   padding: 0 20px;
@@ -75,6 +74,7 @@ const Button = styled.button`
   border: none;
   font-weight: 700;
   background-color: #383838;
+  margin-top: 20px;
   margin-bottom: 15px;
   border-radius: 8px;
   color: white;
