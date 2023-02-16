@@ -1,0 +1,82 @@
+name: job-project-cicd
+###
+# Required Secrets: ENV_DEVELOPMENT, SSH_PRIVATE_KEY, REMOTE_HOST, REMOTE_PORT, REMOTE_USER,
+# AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET
+###
+on:
+  push:
+    tags:
+      - 'server-*'
+      - 'client-*'
+
+jobs:
+  configure-environment:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: create .env
+        run: |
+          cat << EOF > .env
+          ${{ secrets.ENV_DEVELOPMENT }}
+          EOF
+  deploy-server:
+    needs: configure-environment
+    runs-on: ubuntu-20.04
+    if: startsWith(github.event.ref, 'refs/tags/server-')
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "� This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo "�🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - name: Deploy server
+        uses: easingthemes/ssh-deploy@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          EXCLUDE: '/node_modules/'
+
+      - name: Run server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          port: ${{ secrets.REMOTE_POST }}
+          username: ${{ secrets.REMOTE_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            npm install
+            npm run start
+
+  deploy-client:
+    needs: configure-environment
+    runs-on: ubuntu-20.04
+    if: startsWith(github.event.ref, 'refs/tags/client-')
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "� This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo "�🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-2
+      - name: Build
+        run: |
+          npm run install && npm run build:client
+      - name: Deploy to s3
+        run: |
+          aws s3 sync ./dist/apps/client s3://${{ secrets.AWS_S3_BUCKET }}

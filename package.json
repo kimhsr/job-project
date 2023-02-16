@@ -2,7 +2,14 @@
   "name": "job-project",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "prestart": "nx run server:build:production",
+    "start": "pm2 reload apps/server/ecosystem.config.js",
+    "dev:server": "nx serve server",
+    "dev:client": "nx serve client",
+    "build:server": "nx run server:build:production",
+    "build:client": "nx run client:build:production"
+  },
   "private": true,
   "devDependencies": {
     "@babel/preset-react": "^7.14.5",
@@ -56,10 +63,15 @@
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
+    "@nestjs/config": "^2.3.1",
     "@nestjs/core": "^9.0.0",
+    "@nestjs/mongoose": "^9.2.1",
     "@nestjs/platform-express": "^9.0.0",
     "axios": "^1.3.1",
     "eslint-plugin-unused-imports": "^2.0.0",
+    "mongoose": "^6.9.1",
+    "mongoose-delete": "^0.5.4",
+    "pm2": "^5.2.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-is": "18.2.0",
@@ -68,6 +80,7 @@
     "rxjs": "^7.0.0",
     "styled-components": "5.3.6",
     "swiper": "^9.0.3",
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "ulid": "^2.3.0"
   }
 }
