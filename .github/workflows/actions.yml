@@ -76,7 +76,7 @@ jobs:
           aws-region: ap-northeast-2
       - name: Build
         run: |
-          npm run install && npm run build:client
+          npm install && npm run build:client
       - name: Deploy to s3
         run: |
           aws s3 sync ./dist/apps/client s3://${{ secrets.AWS_S3_BUCKET }}
