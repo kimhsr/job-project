@@ -99,6 +99,7 @@ function Join() {
   const [emailValid, setEmailValid] = useState(false);
   const [pwValid, setPwValid] = useState(false);
   const [confirmPwValid, setConfirmPwValid] = useState(false);
+  const [checkPwValid, setCheckPwValid] = useState('');
   const [nicknameValid, setNicknameValid] = useState(false);
 
   const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -132,12 +133,19 @@ function Join() {
   };
 
   const handleConfirmPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setConfirmPw(e.target.value);
+    const pwConfirmCurrent = e.target.value;
+    setConfirmPw(pwConfirmCurrent);
     const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
     if (regex.test(e.target.value)) {
       setConfirmPwValid(true);
     } else {
       setConfirmPwValid(false);
+    }
+
+    if (pw === pwConfirmCurrent) {
+      setCheckPwValid('');
+    } else {
+      setCheckPwValid('비밀번호를 확인해주세요.');
     }
   };
 
@@ -171,7 +179,7 @@ function Join() {
             onChange={handleConfirmPassword}></Input>
         </InputWrap>
         <ErrorMessageWrap>
-          {!confirmPwValid && confirmPw.length > 0 && <div>영문, 숫자 포함 8자 이상 입력해주세요.</div>}
+          {checkPwValid} {!confirmPwValid && confirmPw.length > 0 && <div>영문, 숫자 포함 8자 이상 입력해주세요.</div>}
         </ErrorMessageWrap>
       </ContentWrap>
       <ButtonWrap>
