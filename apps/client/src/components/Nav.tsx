@@ -50,7 +50,9 @@ function Nav() {
             <StyledLink to='/'>
               <Logo>JOBDA</Logo>
             </StyledLink>
-            <MenuTtem>채용공고</MenuTtem>
+            <StyledLink to='/postings'>
+              <MenuTtem>채용공고</MenuTtem>
+            </StyledLink>
             <MenuTtem>커뮤니티</MenuTtem>
           </MenuLists>
           <MenuLists>
