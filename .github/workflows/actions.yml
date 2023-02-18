@@ -10,16 +10,7 @@ on:
       - 'client-*'
 
 jobs:
-  configure-environment:
-    runs-on: ubuntu-20.04
-    steps:
-      - name: create .env
-        run: |
-          cat << EOF > .env
-          ${{ secrets.ENV_DEVELOPMENT }}
-          EOF
   deploy-server:
-    needs: configure-environment
     runs-on: ubuntu-20.04
     if: startsWith(github.event.ref, 'refs/tags/server-')
     steps:
@@ -51,11 +42,13 @@ jobs:
           username: ${{ secrets.REMOTE_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
+            cat << EOF > .env \
+            ${{ secrets.ENV_DEVELOPMENT }} \
+            EOF
             npm install
             npm run start
 
   deploy-client:
-    needs: configure-environment
     runs-on: ubuntu-20.04
     if: startsWith(github.event.ref, 'refs/tags/client-')
     steps:
