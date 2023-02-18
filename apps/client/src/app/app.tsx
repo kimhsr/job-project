@@ -11,6 +11,7 @@ import Footer from '../components/Footer';
 import Login from '../components/Login';
 import Join from '../components/Join';
 import LoginJoinNav from '../components/LoginJoinNav';
+import Postings from '../components/Postings';
 
 const Container = styled.div`
   background-color: #fff;
@@ -35,7 +36,15 @@ export const App = () => {
             </>
           }
         />
-        <Route path='/page-2' />
+        <Route
+          path='/postings'
+          element={
+            <>
+              <Nav />
+              <Postings />
+            </>
+          }
+        />
         <Route
           path='/login'
           element={
