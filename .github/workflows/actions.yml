@@ -42,8 +42,8 @@ jobs:
           username: ${{ secrets.REMOTE_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cat << EOF > .env \
-            ${{ secrets.ENV_DEVELOPMENT }} \
+            cat << EOF > .env
+            ${{ secrets.ENV_DEVELOPMENT }}
             EOF
             npm install
             npm run start
