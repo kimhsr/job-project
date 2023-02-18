@@ -1,6 +1,6 @@
 name: job-project-cicd
 ###
-# Required Secrets: ENV_DEVELOPMENT, SSH_PRIVATE_KEY, REMOTE_HOST, REMOTE_PORT, REMOTE_USER,
+# Required Secrets: ENV_DEVELOPMENT, SSH_PRIVATE_KEY, REMOTE_HOST, REMOTE_PORT, REMOTE_USER, REMOTE_TARGET
 # AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET
 ###
 on:
@@ -40,6 +40,7 @@ jobs:
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: ${{ secrets.REMOTE_TARGET }}
           EXCLUDE: '/node_modules/'
 
       - name: Run server
