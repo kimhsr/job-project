@@ -6,5 +6,6 @@ import { UserIdentificationService } from './user-identification.service';
 @Module({
   imports: [MongooseModule.forFeature([{ name: UserIdentification.name, schema: UserIdentificationSchema }])],
   providers: [UserIdentificationService],
+  exports: [UserIdentificationService],
 })
 export class UserIdentificationModule {}
