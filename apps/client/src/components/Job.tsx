@@ -24,7 +24,8 @@ const GridContainer = styled.div`
 
 const GridItem = styled.div`
   background-color: white;
-  border: 1px solid #e5e5e5;
+  border: 1px solid #cdccc6;
+  border-radius: 5px;
 `;
 
 function Job() {
