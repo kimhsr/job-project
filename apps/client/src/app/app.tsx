@@ -19,8 +19,6 @@ const Container = styled.div`
 `;
 
 export const App = () => {
-  const serverUrl = '/api';
-
   return (
     <Container>
       <Routes>
