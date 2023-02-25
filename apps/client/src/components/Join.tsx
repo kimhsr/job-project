@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -102,7 +102,7 @@ function Join() {
   const [checkPwValid, setCheckPwValid] = useState('');
   const [nicknameValid, setNicknameValid] = useState(false);
 
-  const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleEmail = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
     const regex = /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
     if (regex.test(e.target.value)) {
@@ -110,9 +110,9 @@ function Join() {
     } else {
       setEmailValid(false);
     }
-  };
+  }, []);
 
-  const handleNickname = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleNickname = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setNickname(e.target.value);
     const regex = /^[ㄱ-ㅎ|가-힣|ㅏ-ㅣ|a-z|A-Z|0-9|]{2,16}$/;
     if (regex.test(e.target.value)) {
@@ -120,9 +120,9 @@ function Join() {
     } else {
       setNicknameValid(false);
     }
-  };
+  }, []);
 
-  const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePassword = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setPw(e.target.value);
     const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
     if (regex.test(e.target.value)) {
@@ -130,9 +130,9 @@ function Join() {
     } else {
       setPwValid(false);
     }
-  };
+  }, []);
 
-  const handleConfirmPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleConfirmPassword = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const pwConfirmCurrent = e.target.value;
     setConfirmPw(pwConfirmCurrent);
     const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
@@ -147,7 +147,7 @@ function Join() {
     } else {
       setCheckPwValid('비밀번호를 확인해주세요.');
     }
-  };
+  }, []);
 
   return (
     <JoinContainer>
