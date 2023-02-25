@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -111,7 +111,7 @@ function Login() {
     setNotAllow(true);
   }, [emailValid, pwValid]);
 
-  const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleEmail = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
     const regex = /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
     if (regex.test(e.target.value)) {
@@ -119,9 +119,9 @@ function Login() {
     } else {
       setEmailValid(false);
     }
-  };
+  }, []);
 
-  const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePassword = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setPw(e.target.value);
     const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
     if (regex.test(e.target.value)) {
@@ -129,7 +129,7 @@ function Login() {
     } else {
       setPwValid(false);
     }
-  };
+  }, []);
 
   const onClickConfirmButton = () => {
     if (email === User.email && pw === User.pw) {
